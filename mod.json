@@ -1,0 +1,18 @@
+{
+	"geode": "v3.0.0-beta.1",
+	"id": "tuusuario.iamodcreator",
+	"version": "v1.0.0",
+	"name": "Editor AI Assistant",
+	"developer": "TuNombre",
+	"description": "Añade un asistente de IA dentro del editor para ayudarte a construir y decorar.",
+	"dependencies": [
+		{
+			"id": "geode.loader",
+			"version": "v3.0.0-beta.1",
+			"importance": "required"
+		}
+	],
+	"resources": {
+		"sprites": []
+	}
+}
