@@ -1,0 +1,38 @@
+name: Build Geode Mod
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: # Esto permite activar el script manualmente desde GitHub
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - name: Android32
+            os: ubuntu-latest
+            target: Android32
+          - name: Windows
+            os: windows-latest
+            target: Windows
+
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Mod
+        uses: geode-sdk/build-geode-mod@main
+        with:
+          bindings: geode-sdk/bindings
+          target: ${{ matrix.config.target }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: geode-mod-${{ matrix.config.name }}
+          path: build/**/*.geode
